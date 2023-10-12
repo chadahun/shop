@@ -20,7 +20,7 @@ function App() {
   let navigate=useNavigate();
   return (
     <div className="App">
-      
+
       <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
         <Navbar.Brand href="#home">Shop</Navbar.Brand>

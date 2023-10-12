@@ -1,16 +1,61 @@
 import {useParams} from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+// import styled from 'styled-components';
+
+// let YellowBtn = styled.button`
+//   background:${props=>props.bg};
+//   color:${props=>props.bg == 'blue' ? 'white' : 'black'};
+//   padding:10px;
+// `
+
+
+
+
 function Detail(props){
+
+  useEffect(()=>{console.log('안녕')})
+
+  let [count,setCount]=useState(0);
   let {id}=useParams()
+  // let [alert,setAlert]=useState(true);
+  let [num,setNum]=useState('');
+
+
+
+  useEffect(()=>{
+    if(isNaN(num) == true){
+      alert('그러지마요')
+    }
+  }, [num])
+  
+
+  // useEffect(()=>{
+  //   let a =setTimeout(()=>{setAlert(false)},2000)
+  //   return ()=>{clearTimeout(a) /*타이머 제거*/}           //useEffect 실행하기 전에 실행 cleanup function
+  // }, [])
+
+
   let us = props.shoes.find(function(x){
     return x.id == id;
   })
     return(
       <div className="container">
+        {/* {
+          alert == true ?
+          <div className='alert alert-warning'>2초 이내에 구매시 할인</div>
+          : null
+        } */}
+        {count}
+        <button onClick={()=>{setCount(count+1)}}></button>
+        {/* <YellowBtn bg="blue">버튼</YellowBtn> */}
     <div className="row">
       <div className="col-md-6">
         <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%" />
       </div>
       <div className="col-md-6">
+      return(
+    <input onChange={(e)=>{setNum(e.target.value)}}></input>
+  )
         <h4 className="pt-5">{us.title}</h4>
         <p>{us.content}</p>
         <p>{us.price}</p>
