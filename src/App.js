@@ -14,9 +14,10 @@ import data from './data.js';
 import React, { useEffect, useState } from "react";
 import {Routes,Route,Link,useNavigate,Outlet} from 'react-router-dom';
 import Detail from './routes/Detail.js';
+import axios from 'axios';
 
 function App() {
-  let [shoes] = useState(data);
+  let [shoes,setShoes] = useState(data);
   let navigate=useNavigate();
   return (
     <div className="App">
@@ -65,6 +66,19 @@ function App() {
                   }
                 </Row>
               </Container1>
+              <button onClick={()=>{
+                axios.get('https://codingapple1.github.io/shop/data3.json').then((result)=>{
+                let copy=[...shoes,...result.data];
+                setShoes(copy);
+                })
+                .catch(()=>{
+                  console.log('실패');
+                })
+                // axios.post('/sddas',{name:'kim'})
+                Promise.all([axios.get('/url1'),axios.get('/url2')]).then(()=>{
+                  
+                })
+              }}>더보기</button>
               </>
         }></Route>
         <Route path="/detail/:id" element={<Detail shoes={shoes}></Detail>}></Route>
