@@ -1,5 +1,6 @@
 import {useParams} from 'react-router-dom';
 import React, { useEffect, useState } from "react";
+
 // import styled from 'styled-components';
 
 // let YellowBtn = styled.button`
@@ -19,6 +20,7 @@ function Detail(props){
   let {id}=useParams()
   // let [alert,setAlert]=useState(true);
   let [num,setNum]=useState('');
+  let [tap,setTap]=useState(0);
 
 
 
@@ -53,19 +55,74 @@ function Detail(props){
         <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%" />
       </div>
       <div className="col-md-6">
-      return(
     <input onChange={(e)=>{setNum(e.target.value)}}></input>
-  )
         <h4 className="pt-5">{us.title}</h4>
         <p>{us.content}</p>
         <p>{us.price}</p>
         <button className="btn btn-danger">주문하기</button> 
       </div>
     </div>
+
+
+    <div defaultActiveKey='link0'>
+      <button type="button" class="btn btn-link" eventKey='link0' onClick={()=>{setTap(0)}}>버튼0</button>
+      <button type="button" class="btn btn-link" eventKey='link1' onClick={()=>{setTap(1)}}>버튼1</button>
+      <button type="button" class="btn btn-link" eventKey='link2' onClick={()=>{setTap(2)}}>버튼2</button>
+    </div>
+    <TapContent tap={tap}></TapContent>
+
+
+
   </div> 
     )
   }
+
+
+
+
+  function TapContent({tap}){
+    // if(tap == 0){
+    //   return <div>내용0</div>
+    // }else if(tap == 1){
+    //   return <div>내용1</div>
+    // }else if(tap == 2){
+    //   return <div>내용2</div>
+    // }
+
+    return [<div>내용0</div>,<div>내용1</div>,<div>내용2</div>][tap]
+    //if 문 쓰기 싫으면 
+  }
+  
   export default Detail;
+
+
+
+
+
+{/* <Nav variant="tabs"  defaultActiveKey="link0">
+    <Nav.Item>
+      <Nav.Link eventKey="link0">버튼0</Nav.Link>
+    </Nav.Item>
+    <Nav.Item>
+      <Nav.Link eventKey="link1">버튼1</Nav.Link>
+    </Nav.Item>
+    <Nav.Item>
+      <Nav.Link eventKey="link2">버튼2</Nav.Link>
+    </Nav.Item>
+</Nav>
+<div>내용0</div>
+<div>내용1</div>
+<div>내용2</div>  */}
+
+
+
+
+
+
+
+
+
+
 //   1. find()는 array 뒤에 붙일 수 있으며 return 조건식 적으면 됩니다. 그럼 조건식에 맞는 자료 남겨줌 
 
 // 2. find() 콜백함수에 파라미터 넣으면 array자료에 있던 자료를 뜻합니다. 전 x라고 작명해봤음 
