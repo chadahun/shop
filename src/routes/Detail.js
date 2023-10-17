@@ -1,5 +1,6 @@
 import {useParams} from 'react-router-dom';
 import React, { useEffect, useState } from "react";
+import Nav from 'react-bootstrap/Nav'
 
 // import styled from 'styled-components';
 
@@ -21,6 +22,15 @@ function Detail(props){
   // let [alert,setAlert]=useState(true);
   let [num,setNum]=useState('');
   let [tap,setTap]=useState(0);
+  let [fade2,setFade2]=useState('');
+
+
+  useEffect(()=>{
+    setFade2('end');
+    return ()=>{
+      setFade2('');
+    }
+  },[])
 
 
 
@@ -41,7 +51,7 @@ function Detail(props){
     return x.id == id;
   })
     return(
-      <div className="container">
+      <div className={"container start"+fade2}>
         {/* {
           alert == true ?
           <div className='alert alert-warning'>2초 이내에 구매시 할인</div>
@@ -64,11 +74,17 @@ function Detail(props){
     </div>
 
 
-    <div defaultActiveKey='link0'>
-      <button type="button" class="btn btn-link" eventKey='link0' onClick={()=>{setTap(0)}}>버튼0</button>
-      <button type="button" class="btn btn-link" eventKey='link1' onClick={()=>{setTap(1)}}>버튼1</button>
-      <button type="button" class="btn btn-link" eventKey='link2' onClick={()=>{setTap(2)}}>버튼2</button>
-    </div>
+    <Nav variant="tabs"  defaultActiveKey="link0">
+      <Nav.Item>
+        <Nav.Link eventKey="link0" onClick={()=>{setTap(0)}}>버튼0</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link eventKey="link1" onClick={()=>{setTap(1)}}>버튼1</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link eventKey="link2" onClick={()=>{setTap(2)}}>버튼2</Nav.Link>
+      </Nav.Item>
+    </Nav>
     <TapContent tap={tap}></TapContent>
 
 
@@ -81,6 +97,15 @@ function Detail(props){
 
 
   function TapContent({tap}){
+    let [fade,setFade]=useState('');
+    useEffect(()=>{
+      let a =setTimeout(()=>{setFade('end');},100)
+      
+      return ()=>{
+        clearTimeout(a);
+        setFade('');
+      }
+    },[tap])
     // if(tap == 0){
     //   return <div>내용0</div>
     // }else if(tap == 1){
@@ -89,7 +114,7 @@ function Detail(props){
     //   return <div>내용2</div>
     // }
 
-    return [<div>내용0</div>,<div>내용1</div>,<div>내용2</div>][tap]
+    return (<div className={'start'+fade}>{[<div>내용0</div>,<div>내용1</div>,<div>내용2</div>][tap]}</div>)
     //if 문 쓰기 싫으면 
   }
   
