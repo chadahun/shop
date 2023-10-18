@@ -1,3 +1,4 @@
+
 import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -15,6 +16,7 @@ import React, { useEffect, useState } from "react";
 import {Routes,Route,Link,useNavigate,Outlet} from 'react-router-dom';
 import Detail from './routes/Detail.js';
 import axios from 'axios';
+import Cart from './routes/Cart.js';
 
 function App() {
   let [shoes,setShoes] = useState(data);
@@ -99,6 +101,9 @@ path 작명할 때 /:어쩌구 이렇게 사용하면 "아무 문자"를 뜻합�
           <Route path="one" element={<p>첫 주문시 양배추즙 서비스</p>}></Route>
           <Route path="two" element={<p>생일 기념 쿠폰받기</p>}></Route>
         </Route>
+
+        <Route path='/cart' element={<Cart></Cart>}></Route>
+
       </Routes>
 
       
