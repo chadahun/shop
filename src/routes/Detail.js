@@ -1,6 +1,8 @@
 import {useParams} from 'react-router-dom';
 import React, { useEffect, useState } from "react";
 import Nav from 'react-bootstrap/Nav'
+import { addItem } from '../store';
+import { useDispatch } from 'react-redux';
 
 // import styled from 'styled-components';
 
@@ -23,7 +25,7 @@ function Detail(props){
   let [num,setNum]=useState('');
   let [tap,setTap]=useState(0);
   let [fade2,setFade2]=useState('');
-
+  let dispatch=useDispatch();
 
   useEffect(()=>{
     setFade2('end');
@@ -69,7 +71,9 @@ function Detail(props){
         <h4 className="pt-5">{us.title}</h4>
         <p>{us.content}</p>
         <p>{us.price}</p>
-        <button className="btn btn-danger">주문하기</button> 
+        <button className="btn btn-danger" onClick={()=>{
+          dispatch(addItem({id : 1, name : 'Red Knit', count : 1}))
+        }}>주문하기</button> 
       </div>
     </div>
 

@@ -12,7 +12,7 @@ import Container1 from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import data from './data.js';
-import React, { useEffect, useState } from "react";
+import React, { lazy, useEffect, useState } from "react";
 import {Routes,Route,Link,useNavigate,Outlet} from 'react-router-dom';
 import Detail from './routes/Detail.js';
 import axios from 'axios';
@@ -62,7 +62,7 @@ function App() {
                   {
                     shoes.map(function(a, i){
                       return(
-                        <Card shoes={shoes[i]} i={i} ></Card>
+                        <Card shoes={shoes[i]} i={i} key={i}></Card>
                       )
                     })
                   }
